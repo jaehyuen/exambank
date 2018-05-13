@@ -1,0 +1,43 @@
+doctype
+html
+  head
+    meta(charset='utf8')
+    link( rel='stylesheet' type='text/css' href='/mainstyle.css')
+    link( rel='stylesheet' type='text/css' href='/mainstyle1.css')
+    link( rel='stylesheet' type='text/css' href='/examstyle.css')
+    link( rel='stylesheet' type='text/css' href='/input.css')
+  body
+     div.body-div
+      nav
+        div.nav-div
+          h1.nav-div-h1
+            a.nav-div-a(href='/main') 문제은행
+          if displayname=='login'
+            h1.nav-div-h1
+              a.nav-div-a(href='/user/login')= displayname
+          else
+           h1.nav-div-h1
+              a.nav-div-a(href='/user/logout')= displayname
+           h1.nav-div-h1
+              a.nav-div-a(href='/main/') 뒤로가기
+      main.body-div-main
+        div.input-div-flex
+          div.input-div
+            form(action='/post/ctnew' method='post')
+              p
+                  div 이름
+                  br
+                  input.input-area1(type='text' name='category' placeholder='category')
+              p
+                div.input-div-flex2
+                  div
+                    input#open(type='radio' name='open' checked='checked' value='공개' style='width:20px;height:20px;border:1px')
+                    label(for='open') 공개
+                  div
+                    input#open(type='radio' name='open' value='비공개'  style='width:20px;height:20px;border:1px')
+                    label(for='open') 비공개
+              p
+                  input.input-button1(type='submit' value='생성' class='login_button')
+
+
+    

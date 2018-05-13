@@ -1,0 +1,36 @@
+doctype
+html
+  head
+    meta(charset='utf8')
+    link( rel='stylesheet' type='text/css' href='/mainstyle1.css')
+    link( rel='stylesheet' type='text/css' href='/userstyle.css')
+    link( rel='stylesheet' type='text/css' href='/input.css')
+  body
+   div.body-div
+      nav
+        div.nav-div
+          h1.nav-div-h1
+            a.nav-div-a(href='/main') 문제은행
+          if displayname=='login'
+            h1.nav-div-h1
+              a.nav-div-a(href='/user/login')= displayname
+          else
+           h1.nav-div-h1
+              a.nav-div-a(href='/user/logout')= displayname
+           h1.nav-div-h1
+              a.nav-div-a(href='/main/') 뒤로가기
+      main.body-div-main
+        div.input-div-flex
+          div.input-div
+            form(action='/user/login' method='post')
+                p
+                  input.input-area(type='text' name='user_id' placeholder='id')
+                p
+                  input.input-area(type='password' name='user_password' placeholder='password')
+                p
+                  div.input-div-flex1
+                    
+                      input.input-button(type='submit' value='로그인')             
+                      a.input-a(href='/user/join') 회원가입
+
+      

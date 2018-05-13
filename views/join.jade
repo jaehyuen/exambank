@@ -1,0 +1,42 @@
+doctype
+html
+  head
+    meta(charset='utf8')
+    link( rel='stylesheet' type='text/css' href='/mainstyle1.css')
+    link( rel='stylesheet' type='text/css' href='/userstyle.css')
+    link( rel='stylesheet' type='text/css' href='/input.css')
+  body
+   div.body-div
+      nav
+        div.nav-div
+          h1.nav-div-h1
+            a.nav-div-a(href='/main') 문제은행
+          if displayname=='login'
+            h1.nav-div-h1
+              a.nav-div-a(href='/user/login')= displayname
+          else
+           h1.nav-div-h1
+              a.nav-div-a(href='/user/logout')= displayname
+           h1.nav-div-h1
+              a.nav-div-a(href='/user/login') 뒤로가기
+      main.body-div-main
+        div.input-div-flex
+          div.input-div1
+            form(action='/user/join' method='post')
+                p
+                  div 아이디
+                  br
+                  input.input-area1(type='text' name='user_id' placeholder='id')
+                p
+                  div 비밀번호
+                  br
+                  input.input-area1(type='password' name='user_password' placeholder='password')
+                p
+                  div 닉네임
+                  br
+                  input.input-area1(type='nickname' name='user_nickname' placeholder='nickname')
+                p
+                  input.input-button1(type='submit' value='가입' class='login_button')
+
+
+      

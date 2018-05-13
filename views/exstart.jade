@@ -1,0 +1,40 @@
+doctype
+html
+  head
+    meta(charset='utf8')
+    link( rel='stylesheet' type='text/css' href='/mainstyle1.css')
+    link( rel='stylesheet' type='text/css' href='/userstyle.css')
+    script( type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    script( type='text/javascript' src='/slide.js')
+  body
+    div.body-div
+      nav
+        div.nav-div
+          h1.nav-div-h1
+            a.nav-div-a(href='/main') 문제은행
+          if displayname=='login'
+            h1.nav-div-h1
+              a.nav-div-a(href='/user/login')= displayname
+          else
+           h1.nav-div-h1
+              a.nav-div-a(href='/user/logout')= displayname
+           h1.nav-div-h1
+              a.nav-div-a(href='/main/'+id) 뒤로가기
+              
+      main
+        div.main-div
+          h1.main-div-h1= test.title
+          if test.testtype==true
+            for a in test.example
+              div.main-div-input-answer-flex
+                div.main-div-answer(onclick='answer_check("#{a}","#{test.answer}","#{id}")')= a
+            div.main-div-input-answer-flex1
+              
+          else
+            div.main-div-input-answer-flex1
+              div.main-div-input-answer
+                input.main-div-input(type='text' name='myan' id='myan')
+            div.main-div-input-answer-flex1
+              div.main-div-input-answer
+                div.main-div-input-button(onclick='answer_check(null, "#{test.answer}", "#{id}")') 제출
+

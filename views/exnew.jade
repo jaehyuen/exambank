@@ -1,0 +1,65 @@
+doctype
+html
+  head
+    meta(charset='utf8')
+    link( rel='stylesheet' type='text/css' href='/mainstyle.css')
+    link( rel='stylesheet' type='text/css' href='/mainstyle1.css')
+    link( rel='stylesheet' type='text/css' href='/examstyle.css')
+    link( rel='stylesheet' type='text/css' href='/input.css')
+    link( rel='stylesheet' type='text/css' href='/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.css')
+    script( type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    script( type='text/javascript' src='/slide.js')
+  body
+     div.body-div
+      nav
+        div.nav-div
+          h1.nav-div-h1
+            a.nav-div-a(href='/main') 문제은행
+          if displayname=='login'
+            h1.nav-div-h1
+              a.nav-div-a(href='/user/login')= displayname
+          else
+           h1.nav-div-h1
+              a.nav-div-a(href='/user/logout')= displayname
+           h1.nav-div-h1
+              a.nav-div-a(href='/main/'+id)
+               i(class='fas fa-angle-left fa-2x') 
+      main.body-div-main
+        div.input-div-flex
+          div.input-div1
+            form(action='/post/exnew/'+cate[0]._id method='post')
+              p
+                  div 카테고리
+                  input.input-area1(type='text' name='category' placeholder= cate[0].name readonly)
+              p
+                  
+                  div 문제
+                  textarea.input-textarea( name='title' style='resize: none; overflow:hidden' )
+              p
+                div.input-div-flex2
+                  div
+                    input(type='radio' name='open'  value='1' checked='checked' style='width:20px;height:20px;border:1px')
+                    label(for='open') 객관식
+                  div
+                    input(type='radio' name='open' value='2' style='width:20px;height:20px;border:1px')
+                    label(for='open') 주관식
+              p
+                    div(class='slide_div')
+                      div(class='slide_div_div1')
+                        p
+                          div
+                            input.input-area2(type='text' name='answer1' placeholder='객관식1')
+                            input.input-area2(type='text' name='answer2' placeholder='객관식2')
+                        p    
+                          div
+                         
+                            input.input-area2(type='text' name='answer3' placeholder='객관식3')
+                            input.input-area2(type='text' name='answer' placeholder='정답')
+                    div(class='slide_div2')
+                      div(class='slide_div_div1')
+                        input.input-area(type='text' name='answer' placeholder='정답')
+
+                  input.input-button1(type='submit' value='완료' class='login_button')
+
+
+    
