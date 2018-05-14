@@ -72,7 +72,6 @@ app.get(["/main", "/main/:id"], (req, res) => {
         },
         (err, category) => {
           Category.find({ _id: id }, (err, category3) => {
-            console.log(category3);
             Test.find({ category: category3[0].name }, (err, test) => {
               res.render("main", {
                 displayname: displayname,
@@ -101,7 +100,6 @@ app.get(["/main", "/main/:id"], (req, res) => {
           ]
         },
         (err, category) => {
-          console.log(category);
           res.render("main", {
             displayname: displayname,
             category: category,

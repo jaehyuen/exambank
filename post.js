@@ -68,7 +68,7 @@ router.get("/start/:id", (req, res) => {
         );
       } else {
         var a = Math.floor(Math.random() * test.length);
-        console.log(test[0].example);
+
         function arrayShuffle(oldArray) {
           var newArray = oldArray.slice();
           var len = newArray.length;
@@ -82,7 +82,6 @@ router.get("/start/:id", (req, res) => {
           return newArray;
         }
         test[a].example = arrayShuffle(test[a].example);
-        console.log(test[a].example);
 
         res.render("exstart", {
           displayname: displayname,
@@ -140,7 +139,7 @@ router.post("/cted/:id", (req, res) => {
   var id = req.params.id;
   var name = req.body.category;
   var open = req.body.open;
-  console.log("zz=" + name);
+
   Category.findOne({ _id: id }, (err, category) => {
     category.name = name;
     if (open == "공개") {
@@ -165,9 +164,23 @@ router.get("/recommend/:id", (req, res) => {
             test.save();
             res.redirect("/main/" + category._id);
           } else {
-            test.recommend.pull(user._id);
-            test.save();
-            res.redirect("/main/" + category._id);
+            var count = test.recommend.length;
+
+            var tf = false;
+            for (var i = 0; i < count; i++) {
+              if (user._id.equals(test.recommend[i])) {
+                tf = true;
+              }
+            }
+            if (tf == true) {
+              test.recommend.pull(user._id);
+              test.save();
+              res.redirect("/main/" + category._id);
+            } else {
+              test.recommend.push(user._id);
+              test.save();
+              res.redirect("/main/" + category._id);
+            }
           }
         });
       });
@@ -229,12 +242,9 @@ router.post("/exed/:id", (req, res) => {
       test.testtype = true;
       test.example = [answer[0], answer1, answer2, answer3];
       test.answer = answer[0];
-      test.save((err, a) => {
-        console.log(err);
-      });
+      test.save((err, a) => {});
     }
     Category.find({ name: test.category }, (err, category) => {
-      console.log(category);
       res.redirect("/main/" + category[0]._id);
     });
   });

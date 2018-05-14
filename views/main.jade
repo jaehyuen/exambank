@@ -53,9 +53,12 @@ html
                       
                       div.main-exam-div2                       
                           div= 'by'+tes.author
-                          
-                    a.input-sym(href='/post/recommend/'+tes._id)    
-                      i(class='far fa-heart')
+                    if displayname=='login'      
+                      a.input-sym(href='/user/err')    
+                        i(class='far fa-heart')
+                    else
+                      a.input-sym(href='/post/recommend/'+tes._id)    
+                        i(class='far fa-heart')
                         
           div.tool-exam
                 
