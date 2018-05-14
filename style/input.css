@@ -144,3 +144,9 @@ label {
   cursor: pointer;
   padding-top: 10px;
 }
+.input-sym {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10px;
+}

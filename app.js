@@ -6,8 +6,7 @@ var multer = require("multer");
 var session = require("express-session");
 var post = require("./post.js");
 var user = require("./user.js");
-var comment = require("./comment.js");
-var mypg = require("./mypg.js");
+
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 require("date-utils");
@@ -27,8 +26,7 @@ var Test = require("./db/test");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/post", post);
 app.use("/user", user);
-app.use("/comment", comment);
-app.use("/mypg", mypg);
+
 app.use(express.static("style"));
 
 app.set("view engine", "jade");

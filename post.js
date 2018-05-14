@@ -9,6 +9,7 @@ var router = express.Router();
 var mongoose = require("mongoose");
 var Category = require("./db/category");
 var Test = require("./db/test");
+var User = require("./db/user");
 
 app.use(
   session({
@@ -149,6 +150,28 @@ router.post("/cted/:id", (req, res) => {
     }
     category.save();
     res.redirect("/main/" + id);
+  });
+});
+
+router.get("/recommend/:id", (req, res) => {
+  var id = req.params.id;
+  var usernickname = req.session.displayname;
+  Test.findOne({ _id: id }, (err, test) => {
+    User.findOne({ usernickname: usernickname }, (err, user) => {
+      User.find({ _id: { $in: test.recommend } }, (err, test2) => {
+        Category.findOne({ name: test.category }, (err, category) => {
+          if (test2 == "") {
+            test.recommend.push(user._id);
+            test.save();
+            res.redirect("/main/" + category._id);
+          } else {
+            test.recommend.pull(user._id);
+            test.save();
+            res.redirect("/main/" + category._id);
+          }
+        });
+      });
+    });
   });
 });
 
